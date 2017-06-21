@@ -1,0 +1,41 @@
+{
+  "name": "react-happy-browser",
+  "version": "1.0.0",
+  "description": "Happy browser for react",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "start": "webpack --config webpack.config.js",
+    "build": "babel src -d lib",
+    "build-webpack": "babel webpack.config.js -o webpack.config.out.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChinW/react-happy-browser.git"
+  },
+  "keywords": [
+    "React",
+    "Happy-browser"
+  ],
+  "author": "Chi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChinW/react-happy-browser/issues"
+  },
+  "homepage": "https://github.com/ChinW/react-happy-browser#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "css-loader": "^0.28.4",
+    "html-webpack-plugin": "^2.28.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
+  }
+}
