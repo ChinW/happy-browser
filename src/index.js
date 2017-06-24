@@ -11,7 +11,6 @@ class HappyBrowser {
     };
 
     static config = {
-        hide: false,
         alertWhen: () => true,
         alertMode: HappyBrowser.alertMode.banner,
         jumpURL: 'https://browsehappy.com/'

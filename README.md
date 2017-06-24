@@ -36,7 +36,6 @@ HappyBrowser.isBlink()
 
 ```
 HappyBrowser.alert({
-  hide: false,
   alertWhen: () => true,
   alertMode: HappyBrowser.alertMode.banner,
   jumpURL: 'https://browsehappy.com/'
