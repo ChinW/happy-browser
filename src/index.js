@@ -2,6 +2,8 @@
  * Created by Chi on 17/06/2017.
  */
 
+import '../assets/styles/index.scss';
+
 export default class HappyBrowser {
     static alertMode = {
       jump: 'jump',
@@ -123,7 +125,12 @@ export default class HappyBrowser {
         if (alertWhen(this.detect())) {
             document.write(`
                 <div class="hb-alert">
-                  ${HappyBrowser.browser.name} ${HappyBrowser.browser.version}
+                  <div class="hb-alert-wrapper">
+                      Please update your browser for better experience, 
+                      <a href=${jumpURL} class="hb-button">click here for updating</a>
+                      <span class="hb-current-version">(Current: ${HappyBrowser.browser.name} ${HappyBrowser.browser.version})</span>
+                      <span class="hb-close"></span>
+                  </div>
                 </div>
             `);
         }

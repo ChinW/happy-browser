@@ -2,6 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 
 let baseConfig = {
     // target: 'async-node',
@@ -11,6 +17,7 @@ let baseConfig = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash].js',
+        sourceMapFilename: '[file].map',
         publicPath: '/'
     },
     plugins: [
@@ -30,8 +37,10 @@ let baseConfig = {
             template: 'assets/index.html',
             inject: true,
             hash: true
-        })
+        }),
+        extractSass
     ],
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -40,7 +49,21 @@ let baseConfig = {
             },
             {
                 test: /\.scss$/,
-                loader: "style-loader"
+                use: extractSass.extract({
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                })
             }
         ]
     },
@@ -50,7 +73,7 @@ let baseConfig = {
         port: 8080,
         hot: true,
         publicPath: '/',
-        host: "192.168.1.5"
+        // host: "192.168.99.234"
     }
 };
 
