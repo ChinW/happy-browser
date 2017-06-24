@@ -33,7 +33,10 @@ body {
     display: block;
     color: #000;
     margin-right: 25px;
+    width: 30px;
+    height: 30px;
     position: relative;
+    cursor: pointer;
     &:hover {
       &:before, &:after {
         background: #26F593;
@@ -47,17 +50,20 @@ body {
       display: block;
       position: absolute;
       top: 7.5px;
-      cursor: pointer;
     }
     &:before {
-      left: -2px;
+      left: 15px;
       transform: rotate(45deg);
       //top: 10px;
     }
     &:after {
-      right: 0;
+      right: 13px;
       transform: rotate(-45deg);
       //top: 15px;
     }
   }
+}
+
+.hb-hide {
+  display: none;
 }

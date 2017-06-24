@@ -38,7 +38,12 @@ let baseConfig = {
             inject: true,
             hash: true
         }),
-        extractSass
+        extractSass,
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify({
+                NODE_ENV: 'development'
+            })
+        })
     ],
     devtool: "source-map",
     module: {

@@ -4,13 +4,14 @@
 
 import '../assets/styles/index.scss';
 
-export default class HappyBrowser {
+class HappyBrowser {
     static alertMode = {
       jump: 'jump',
       banner: 'banner'
     };
 
     static config = {
+        hide: false,
         alertWhen: () => true,
         alertMode: HappyBrowser.alertMode.banner,
         jumpURL: 'https://browsehappy.com/'
@@ -53,7 +54,7 @@ export default class HappyBrowser {
     }
 
     isBlink() {
-        return (HappyBrowser.browsers.isChrome || HappyBrowser.browsers.isOpera) && !!window.CSS;
+        return (this.isChrome() || this.isOpera()) && !!window.CSS;
     }
 
     getIEVersion() {
@@ -119,23 +120,37 @@ export default class HappyBrowser {
         return HappyBrowser.browser;
     }
 
+    dismiss() {
+        const hbAlert = document.getElementById("hb-alert");
+        hbAlert.parentNode.removeChild(hbAlert);
+    }
+
     alert(config = {}) {
         const thisConfig = Object.assign({}, HappyBrowser.config, config);
         const { alertWhen, jumpURL, alertMode } = thisConfig;
-        if (alertWhen(this.detect())) {
-            document.write(`
-                <div class="hb-alert">
+        if (alertMode === HappyBrowser.alertMode.banner) {
+            if (alertWhen(this.detect())) {
+                document.write(`
+                <div class="hb-alert ${thisConfig.hide ? 'hb-hide': ''}" id="hb-alert">
                   <div class="hb-alert-wrapper">
                       Please update your browser for better experience, 
                       <a href=${jumpURL} class="hb-button">click here for updating</a>
                       <span class="hb-current-version">(Current: ${HappyBrowser.browser.name} ${HappyBrowser.browser.version})</span>
-                      <span class="hb-close"></span>
+                      <span class="hb-close" id="hb-close"></span>
                   </div>
                 </div>
             `);
+            }
+            document.getElementById("hb-close").onclick = this.dismiss;
+        } else {
+            window.href = jumpURL;
         }
     }
 }
 
-const happyBrowser = new HappyBrowser({});
-console.log(happyBrowser.alert());
+export default new HappyBrowser();
+
+if (process.env.NODE_ENV === 'development') {
+    const happyBrowser = new HappyBrowser();
+    console.log(happyBrowser.alert());
+}
