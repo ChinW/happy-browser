@@ -14,7 +14,7 @@ A browser detection tool
 
 ### 3.1 Import
 
-```
+```javascript
 import HappyBrowser from 'HappyBrowser'
 # or
 const HappyBrowser = require('HappyBrowser')
@@ -22,7 +22,7 @@ const HappyBrowser = require('HappyBrowser')
 
 ### 3.2 Detect Specific Browser
 
-```
+```javascript
 HappyBrowser.isChrome()
 HappyBrowser.isOpera()
 HappyBrowser.isSafari()
@@ -34,9 +34,9 @@ HappyBrowser.isBlink()
 
 ### 3.3 Alert
 
-```
+```javascript
 HappyBrowser.alert({
-  alertWhen: () => true,
+  alertWhen: (browser) => true,
   alertMode: HappyBrowser.alertMode.banner,
   jumpURL: 'https://browsehappy.com/'
 })
@@ -46,11 +46,22 @@ HappyBrowser.alert({
 
 ### 4.1 Alert Mode
 
-```$xslt
+```javascript
 static alertMode = {
   jump: 'jump', // jump to JumpURL directly
   banner: 'banner' // show banner in webpage
 };
+```
+
+### 4.2 alertWhen 
+
+The `alertWhen` function returns Boolean, `true` means alerting, `false` for not. The `browser` object is passed to `alertWhen`:
+
+```javascript
+browser = {
+    name: String,
+    version: String
+}    
 ```
 
 ## 5. Contribution
