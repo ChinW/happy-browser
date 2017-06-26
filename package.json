@@ -1,17 +1,16 @@
 {
-  "name": "react-happy-browser",
+  "name": "happy-browser",
   "version": "1.0.0",
-  "description": "Happy browser for react",
+  "description": "A browser detection tool",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
-    "start": "webpack --config webpack.config.js",
-    "build": "babel src -d lib",
-    "build-webpack": "babel webpack.config.js -o webpack.config.out.js"
+    "build": "webpack -p --config webpack.config.js",
+    "build-dev": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChinW/react-happy-browser.git"
+    "url": "git+https://github.com/ChinW/happy-browser.git"
   },
   "keywords": [
     "React",

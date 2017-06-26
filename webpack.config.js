@@ -4,7 +4,7 @@ const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
+    filename: "happy-browser.min.css",
     disable: process.env.NODE_ENV === "development"
 });
 
@@ -16,16 +16,16 @@ let baseConfig = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js',
+        filename: 'happy-browser.min.js',
         sourceMapFilename: '[file].map',
         publicPath: '/'
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'inline',
-            filename: 'inline.js',
-            minChunks: Infinity
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'inline',
+        //     filename: 'inline.js',
+        //     minChunks: Infinity
+        // }),
         // new webpack.optimize.AggressiveSplittingPlugin({
         //     minSize: 5000,
         //     maxSize: 10000

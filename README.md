@@ -15,9 +15,13 @@ A browser detection tool
 ### 3.1 Import
 
 ```javascript
-import HappyBrowser from 'HappyBrowser'
+import HappyBrowser from 'HappyBrowser';
 # or
-const HappyBrowser = require('HappyBrowser')
+const HappyBrowser = require('HappyBrowser');
+
+# then
+require('happy-browser/dist/happy-browser.min.css');
+
 ```
 
 ### 3.2 Detect Specific Browser
