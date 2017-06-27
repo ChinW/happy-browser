@@ -12,7 +12,7 @@ A browser detection tool
 ## 3. Install
 
 ```javascript
-yarn install --save-dev happy-brwoser
+yarn add --save-dev happy-brwoser
 npm install --dev happy-browser
 ```
 
