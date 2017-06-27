@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ChinW/happy-browser.svg?branch=master)](https://travis-ci.org/ChinW/happy-browser)
+
 ## 1. Happy Browser
 
 A browser detection tool
