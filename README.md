@@ -9,6 +9,12 @@ A browser detection tool
 | >= 45   | >=3.5   | >7 | >=12 | >3    | >3     |
 
 
+## 3. Install
+
+```javascript
+yarn install --save-dev happy-brwoser
+npm install --dev happy-browser
+```
 
 ## 3. Usage
 
