@@ -4,7 +4,7 @@
 
 import '../assets/styles/index.scss';
 
-class HappyBrowser {
+export class HappyBrowser {
     static alertMode = {
       jump: 'jump',
       banner: 'banner'
@@ -63,11 +63,9 @@ class HappyBrowser {
         let rv = -1;
 
         if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-
             if (isNaN(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))))) {
                 //For IE 11 >
-                if (navigator.appName == 'Netscape') {
-                    let ua = navigator.userAgent;
+                if (navigator.appName === 'Netscape') {
                     let re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
                     if (re.exec(ua) !== null) {
                         rv = parseFloat(RegExp.$1);
@@ -96,17 +94,23 @@ class HappyBrowser {
 
     detect() {
         //noinspection JSAnnotator
-        const ua = window.navigator.userAgent;
         const navigator = window.navigator;
-        let M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\S+)/i) || [];
+        const ua = navigator.userAgent;
+        let M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([^\s;()]+)/i) || [];
         let tem;
-        if (/trident/i.test(M[1])) {
-            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        if (/(trident)/i.test(M[1])) {
+            tem = /\brv[ :]+([^\s;()]+)/g.exec(ua) || [];
             M = ['IE', (tem[1] || '')];
+        } else if (/(msie)/i.test(M[1])) {
+            M = ['IE', (M[2] || '')];
         } else {
             if (M[1] === 'Chrome') {
-                tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
-                if (tem !== null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+                tem = ua.match(/\b(OPR|Edge)\/(\S+)/);
+                if (tem !== null) {
+                    console.log(tem[1]);
+                    tem[1] = tem[1].replace('OPR', 'Opera');
+                    M = tem;
+                }
             }
             M = M[2] ? [M[1], M[2]] : [navigator.appName, `${navigator.appVersion}-?`];
             if ((tem = ua.match(/version\/(\d+)/i)) !== null) {
@@ -130,15 +134,15 @@ class HappyBrowser {
         if (alertMode === HappyBrowser.alertMode.banner) {
             if (alertWhen(this.detect())) {
                 document.write(`
-                <div class="hb-alert ${thisConfig.hide ? 'hb-hide': ''}" id="hb-alert">
-                  <div class="hb-alert-wrapper">
-                      Please update your browser for better experience, 
-                      <a href=${jumpURL} class="hb-button">click here for updating</a>
-                      <span class="hb-current-version">(Current: ${HappyBrowser.browser.name} ${HappyBrowser.browser.version})</span>
-                      <span class="hb-close" id="hb-close"></span>
-                  </div>
-                </div>
-            `);
+                    <div class="hb-alert ${thisConfig.hide ? 'hb-hide': ''}" id="hb-alert">
+                      <div class="hb-alert-wrapper">
+                          Please update your browser for better experience, 
+                          <a href=${jumpURL} class="hb-button">click here for updating</a>
+                          <span class="hb-current-version">(Current: ${HappyBrowser.browser.name} ${HappyBrowser.browser.version})</span>
+                          <span class="hb-close" id="hb-close"></span>
+                      </div>
+                    </div>
+                `);
             }
             document.getElementById("hb-close").onclick = this.dismiss;
         } else {

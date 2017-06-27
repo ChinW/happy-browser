@@ -16,9 +16,9 @@ yarn add --save-dev happy-brwoser
 npm install --dev happy-browser
 ```
 
-## 3. Usage
+## 4. Usage
 
-### 3.1 Import
+### 4.1 Import
 
 ```javascript
 import HappyBrowser from 'HappyBrowser';
@@ -30,7 +30,7 @@ require('happy-browser/dist/happy-browser.min.css');
 
 ```
 
-### 3.2 Detect Specific Browser
+### 4.2 Detect Specific Browser
 
 ```javascript
 HappyBrowser.isChrome()
@@ -42,7 +42,7 @@ HappyBrowser.isChrome()
 HappyBrowser.isBlink()
 ```
 
-### 3.3 Alert
+### 4.3 Alert
 
 ```javascript
 HappyBrowser.alert({
@@ -52,9 +52,9 @@ HappyBrowser.alert({
 })
 ```
 
-## 4. Configuration
+## 5. Configuration
 
-### 4.1 Alert Mode
+### 5.1 Alert Mode
 
 ```javascript
 static alertMode = {
@@ -63,7 +63,7 @@ static alertMode = {
 };
 ```
 
-### 4.2 alertWhen 
+### 5.2 alertWhen 
 
 The `alertWhen` function returns Boolean, `true` means alerting, `false` for not. The `browser` object is passed to `alertWhen`:
 
@@ -74,6 +74,6 @@ browser = {
 }    
 ```
 
-## 5. Contribution
+## 6. Contribution
 
 PR welcome!
