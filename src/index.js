@@ -21,75 +21,39 @@ export class HappyBrowser {
         version: '?'
     };
 
-    constructor() {
-
-    }
-
     isOpera() {
-        return (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        const browser = this.detect();
+        return browser.name === 'Opera';
     }
 
     isFirefox() {
-        return typeof InstallTrigger !== 'undefined';
+        const browser = this.detect();
+        return browser.name === 'Firefox';
     }
 
     isSafari() {
-        return /constructor/i.test(window.HTMLElement) ||
-            (function (p) {
-                return p.toString() === "[object SafariRemoteNotification]";
-            })(!window['safari'] || safari.pushNotification);
+        const browser = this.detect();
+        return browser.name === 'Safari';
     }
 
     isIE() {
-        return /*@cc_on!@*/false || !!document.documentMode;
+        const browser = this.detect();
+        return browser.name === 'IE';
     }
 
     isEdge() {
-        return !HappyBrowser.browsers.isIE && !!window.StyleMedia;
+        const browser = this.detect();
+        return browser.name === 'Edge';
     }
 
     isChrome() {
-        return !!window.chrome && !!window.chrome.webstore;
+        const browser = this.detect();
+        return browser.name === 'Chrome';
     }
 
     isBlink() {
-        return (this.isChrome() || this.isOpera()) && !!window.CSS;
-    }
-
-    getIEVersion() {
-        const navigator = window.navigator;
-        let ua = navigator.userAgent;
-        let msie = ua.indexOf("MSIE ");
-        let rv = -1;
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-            if (isNaN(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))))) {
-                //For IE 11 >
-                if (navigator.appName === 'Netscape') {
-                    let re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-                    if (re.exec(ua) !== null) {
-                        rv = parseFloat(RegExp.$1);
-                        return rv;
-                    }
-                } else {
-                    return 'Version Unknown';
-                }
-            } else {
-                //For < IE11
-                return (parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
-            }
-            return false;
-        }
-    }
-
-    getChromeVersion() {
-        const v = window.navigator.userAgent.match(/Chrome\/(\S+)/);
-        return v ? v[1] : 'Version Unknown';
-    }
-
-    getEdgeVersion() {
-        const v = window.navigator.userAgent.match(/Edge\/(\S+)/);
-        return v ? v[1] : 'Version Unknown';
+        const browser = this.detect();
+        return browser.name === 'Blink';
     }
 
     detect() {

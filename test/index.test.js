@@ -125,4 +125,59 @@ describe('[Happy Browser]', () => {
             });
         });
     });
+
+    test('isOpera works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Opera;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isOpera()).toEqual(true);
+        });
+    });
+
+    test('isFirefox works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Firefox;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isFirefox()).toEqual(true);
+        });
+    });
+
+    test('isIE works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.MSIE;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isIE()).toEqual(true);
+        });
+    });
+
+    test('isEdge works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Edge;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isEdge()).toEqual(true);
+        });
+    });
+
+    test('isChrome works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Chrome;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isChrome()).toEqual(true);
+        });
+    });
 });
