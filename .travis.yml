@@ -3,3 +3,9 @@ node_js:
   - "7"
 script:
   - npm run test
+addons:
+  code_climate:
+    repo_token: 80ef15eb85c67957e8d1faa745329b169d05e93f72e5d285b6b791e7cdfdf0a6
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info

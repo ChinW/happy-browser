@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ChinW/happy-browser.svg?branch=master)](https://travis-ci.org/ChinW/happy-browser)
+<a href="https://codeclimate.com/github/codeclimate/codeclimate/coverage"><img src="https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg" /></a>
 
 ## 1. Happy Browser
 
