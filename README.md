@@ -4,7 +4,7 @@
 
 A browser detection tool
 
-## 2. Brwosers Supported
+## 2. Browser Supported
 
 | Chrome | Firefox | IE | Edge | Opera | Safari |
 |--------|---------|----|------|-------|--------|
