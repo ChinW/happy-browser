@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ChinW/happy-browser.svg?branch=master)](https://travis-ci.org/ChinW/happy-browser)
+[![Build Status](https://travis-ci.org/ChinW/happy-browser.svg?branch=master)](https://travis-ci.org/ChinW/happy-browser) [![Code Climate](https://codeclimate.com/github/ChinW/happy-browser/badges/gpa.svg)](https://codeclimate.com/github/ChinW/happy-browser) [![Test Coverage](https://codeclimate.com/github/ChinW/happy-browser/badges/coverage.svg)](https://codeclimate.com/github/ChinW/happy-browser/coverage) [![Issue Count](https://codeclimate.com/github/ChinW/happy-browser/badges/issue_count.svg)](https://codeclimate.com/github/ChinW/happy-browser)
 
 ## 1. Happy Browser
 
