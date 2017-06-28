@@ -6,13 +6,6 @@ before_script:
   - chmod +x ./cc-test-reporter
 script:
   - npm run test
-  # Preferably you will run test-reporter on branch update events. But
-  # if you setup travis to build PR updates only, you don't need to run
-  # the line below
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
-  # In the case where travis is setup to build PR updates only,
-  # uncomment the line below
-  # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 addons:
   code_climate:
     repo_token: 80ef15eb85c67957e8d1faa745329b169d05e93f72e5d285b6b791e7cdfdf0a6
