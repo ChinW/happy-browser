@@ -180,4 +180,15 @@ describe('[Happy Browser]', () => {
             expect(happybrowser.isChrome()).toEqual(true);
         });
     });
+
+    test('alert works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Chrome;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isChrome()).toEqual(true);
+        });
+    });
 });
