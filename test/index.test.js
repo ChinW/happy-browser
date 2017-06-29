@@ -2,7 +2,7 @@
  * Created by Chi on 27/06/2017.
  */
 
-import happybrowser from '../src/index.js';
+import happybrowser, { HappyBrowser } from '../src/index.js';
 
 const userAgents = {
     Chrome: {
@@ -20,6 +20,15 @@ const userAgents = {
             target: {
                 name: 'Opera',
                 version: '45.0.2552.888'
+            }
+        }
+    },
+    Safari: {
+        11: {
+            agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/604.1.27 (KHTML, like Gecko) Version/11.0 Safari/604.1.27',
+            target: {
+                name: 'Safari',
+                version: '11.0'
             }
         }
     },
@@ -170,6 +179,17 @@ describe('[Happy Browser]', () => {
         });
     });
 
+    test('isSafari works', () => {
+        window.navigator.appName = 'test';
+        window.navigator.appVersion = "test";
+        const browser = userAgents.Safari;
+        Object.keys(browser).map((version) => {
+            const userAgent = browser[version];
+            window.navigator.userAgent = userAgent.agent;
+            expect(happybrowser.isSafari()).toEqual(true);
+        });
+    });
+
     test('isChrome works', () => {
         window.navigator.appName = 'test';
         window.navigator.appVersion = "test";
@@ -184,11 +204,26 @@ describe('[Happy Browser]', () => {
     test('alert works', () => {
         window.navigator.appName = 'test';
         window.navigator.appVersion = "test";
-        const browser = userAgents.Chrome;
-        Object.keys(browser).map((version) => {
-            const userAgent = browser[version];
-            window.navigator.userAgent = userAgent.agent;
-            expect(happybrowser.isChrome()).toEqual(true);
+        window.navigator.userAgent = userAgents.Chrome[58].agent;
+        document.write = jest.fn();
+        // document.write = s => s;
+        happybrowser.alert({
+            alertWhen: () => false,
+            alertMode: HappyBrowser.alertMode.banner,
+            jumpURL: "s"
         });
+        expect(document.write.mock.calls.length).toEqual(0);
+        happybrowser.alert({
+            alertMode: HappyBrowser.alertMode.jump,
+            jumpURL: "s"
+        });
+        expect(document.write.mock.calls.length).toEqual(0);
+
+        happybrowser.alert({
+            alertWhen: () => true,
+            alertMode: HappyBrowser.alertMode.banner,
+            jumpURL: "s"
+        });
+        expect(document.write.mock.calls.length).toEqual(1);
     });
 });

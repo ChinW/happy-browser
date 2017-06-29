@@ -77,7 +77,7 @@ export class HappyBrowser {
                 }
             }
             M = M[2] ? [M[1], M[2]] : [navigator.appName, `${navigator.appVersion}-?`];
-            if ((tem = ua.match(/version\/(\d+)/i)) !== null) {
+            if ((tem = ua.match(/version\/([^\s;()]+)/i)) !== null) {
                 M.splice(1, 1, tem[1]);
             }
         }
@@ -98,7 +98,7 @@ export class HappyBrowser {
         if (alertMode === HappyBrowser.alertMode.banner) {
             if (alertWhen(this.detect())) {
                 document.write(`
-                    <div class="hb-alert ${thisConfig.hide ? 'hb-hide': ''}" id="hb-alert">
+                    <div class="hb-alert" id="hb-alert">
                       <div class="hb-alert-wrapper">
                           Please update your browser for better experience, 
                           <a href=${jumpURL} class="hb-button">click here for updating</a>
@@ -107,8 +107,10 @@ export class HappyBrowser {
                       </div>
                     </div>
                 `);
+                if (document.getElementById("hb-close")) {
+                    document.getElementById("hb-close").onclick = this.dismiss;
+                }
             }
-            document.getElementById("hb-close").onclick = this.dismiss;
         } else {
             window.href = jumpURL;
         }
